@@ -68,6 +68,7 @@ namespace WindowsApp
             byte[] data = new byte[count];
             memoryStream.Read(data, 0, count);
             string response = System.Text.Encoding.UTF8.GetString(data);
+
             Debug.WriteLine(response);
 
             return data;

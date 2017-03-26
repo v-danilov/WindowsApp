@@ -45,7 +45,7 @@ namespace WindowsApp
 
             //con.SendData("refresh;");
             //string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
-            Debug.WriteLine(inputMessage);
+            //Debug.WriteLine(inputMessage);
             string[] list_elements = inputMessage.Split(';');
             int size = list_elements.Length;
             for(int i = 4; i < size - 1; i++)
