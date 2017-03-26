@@ -5,9 +5,104 @@
     xmlns:local="using:WindowsApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Background="Black">
+    <Page.BottomAppBar>
+        <AppBar IsOpen="False" IsSticky="True" ClosedDisplayMode="Compact" Opacity="0.8" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <AppBarButton Name="Connection" Icon="Play" Click="Connection_Click"/>
+                <AppBarButton Name="NetworkState" Icon="Setting" Click="NetworkState_Click"></AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <ContinuumNavigationTransitionInfo/>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
+    <Page.Resources>
+
+        <Style x:Key="PivotItemStyle1" TargetType="PivotItem">
+            <Setter Property="Background" Value="{ThemeResource PivotItemBackground}"/>
+            <Setter Property="Margin" Value="{ThemeResource PivotItemMargin}"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PivotItem">
+                        <Grid Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="Pivot">
+                                    <VisualState x:Name="Right"/>
+                                    <VisualState x:Name="Left"/>
+                                    <VisualState x:Name="Center"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Grid HorizontalAlignment="Left" Height="100" Margin="159,79,0,0" VerticalAlignment="Top" Width="100"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel  Orientation="Horizontal" Grid.ColumnSpan="2" Height="52" VerticalAlignment="Top">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF343333" Offset="0"/>
+                    <GradientStop Color="#FF404040" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+
+            <TextBlock x:Name="blankBlock_Copy" TextWrapping="Wrap" Text="" Width="11" RenderTransformOrigin="0.5,0.5"
+>
+                <TextBlock.RenderTransform>
+                    <CompositeTransform ScaleX="-1"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Image x:Name="image1" Width="30" Source="Backgrounds/thumbnail_top_logo.jpg" Margin="0,10,0,10" Stretch="Fill"/>
+            <TextBlock x:Name="blankBlock_Copy5" TextWrapping="Wrap" Text="" Width="11" RenderTransformOrigin="0.5,0.5"
+>
+                <TextBlock.RenderTransform>
+                    <CompositeTransform ScaleX="-1"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="titleBlock" TextWrapping="Wrap" Text="Доктор Губер - клиент" FontSize="20" Width="272" FontWeight="Bold" Height="36" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,0,4"/>
+        </StackPanel>
+        <Pivot x:Name="MainPivot" Title="" Foreground="White" FontSize="36" Background="Transparent" Grid.ColumnSpan="2" Margin="0,33,0,0" Height="607" VerticalAlignment="Top">
+            <PivotItem x:Name="SettingsPivot" Header="Главная" Foreground="White" Style="{StaticResource PivotItemStyle1}" Margin="12,0" Background="{x:Null}">
+                <ScrollViewer Height="532" VerticalAlignment="Bottom" ViewChanged="ScrollViewer_ViewChanged">
+                    <Grid HorizontalAlignment="Left" Width="336">
+                        <Button x:Name="connectButton" Content="Подключиться" HorizontalAlignment="Left" Margin="106,30,0,0" VerticalAlignment="Top" Click="connectButton_Click"/>
+                        <Button x:Name="settingsButton" Content="Настройки" HorizontalAlignment="Left" Margin="121,88,0,0" VerticalAlignment="Top" Click="settingsButton_Click"/>
+                        <Button x:Name="exitButton" Content="Выход" HorizontalAlignment="Left" Margin="138,145,0,0" VerticalAlignment="Top" Click="exitButton_Click"/>
+                        <Image x:Name="image" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,191,0,0" Source="Backgrounds/thumbnail_logo.jpg" Height="340" Width="336"/>
+                    </Grid>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem x:Name="ConfigurationsPivot" Header="Отладка" RenderTransformOrigin="0.5,0.5" Margin="10,0" Background="{x:Null}">
+                <ScrollViewer Background="{x:Null}">
+                    <StackPanel>
+                        <TextBlock x:Name="textBlockRequest" TextWrapping="Wrap" Text="Запрос" Foreground="Black" FontSize="28"/>
+                        <TextBox x:Name="textBoxRequest" TextWrapping="Wrap" Text="" FontSize="22"/>
+                        <TextBlock x:Name="textBlockSpacer" TextWrapping="Wrap" Text="" Foreground="Black"/>
+                        <TextBlock x:Name="textBlockResponse" TextWrapping="Wrap" Text="Ответ" Foreground="Black" FontSize="28"/>
+                        <TextBox x:Name="textBoxResponse" TextWrapping="Wrap" Text="" FontSize="22" Height="145" IsReadOnly="True"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
     </Grid>
+
 </Page>

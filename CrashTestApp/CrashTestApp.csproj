@@ -1,22 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{769DCE4F-7490-46AA-9993-E69B4045AE85}</ProjectGuid>
+    <ProjectGuid>{848731a2-3d57-4369-9726-161b03e6294e}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsApp</RootNamespace>
-    <AssemblyName>WindowsApp</AssemblyName>
-    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <RootNamespace>CrashTestApp</RootNamespace>
+    <AssemblyName>CrashTestApp</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>WindowsApp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    
+    <PackageCertificateKeyFile>CrashTestApp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -95,71 +97,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Connection.cs" />
-    <Compile Include="LaunchProcessForms\BeerWort.xaml.cs">
-      <DependentUpon>BeerWort.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaunchProcessForms\Boiling.xaml.cs">
-      <DependentUpon>Boiling.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaunchProcessForms\Distillation.xaml.cs">
-      <DependentUpon>Distillation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaunchProcessForms\Fermentation.xaml.cs">
-      <DependentUpon>Fermentation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaunchProcessForms\Manual.xaml.cs">
-      <DependentUpon>Manual.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LaunchProcessForms\Rectification.xaml.cs">
-      <DependentUpon>Rectification.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PauseTemplate.xaml.cs">
-      <DependentUpon>PauseTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPropertiesForms\BeerWort.xaml.cs">
-      <DependentUpon>BeerWort.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPropertiesForms\Boiling.xaml.cs">
-      <DependentUpon>Boiling.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPropertiesForms\Distilation.xaml.cs">
-      <DependentUpon>Distilation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPropertiesForms\Fermentation.xaml.cs">
-      <DependentUpon>Fermentation.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPropertiesForms\Rectification.xaml.cs">
-      <DependentUpon>Rectification.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipesPage.xaml.cs">
-      <DependentUpon>RecipesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RenameDialog.xaml.cs">
-      <DependentUpon>RenameDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsTemplate.xaml.cs">
-      <DependentUpon>SettingsTemplate.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="WindowsApp_TemporaryKey.pfx" />
+    
+    <None Include="CrashTestApp_TemporaryKey.pfx" />
+    
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Backgrounds\back.png" />
-    <Content Include="Backgrounds\background.png" />
-    <Content Include="Backgrounds\back_samogon.png" />
-    <Content Include="Backgrounds\thumbnail_top_logo.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -168,88 +119,22 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="Backgrounds\thumbnail_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="LaunchProcessForms\BeerWort.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LaunchProcessForms\Boiling.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LaunchProcessForms\Distillation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LaunchProcessForms\Fermentation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LaunchProcessForms\Manual.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LaunchProcessForms\Rectification.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PauseTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProcessPropertiesForms\BeerWort.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProcessPropertiesForms\Boiling.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProcessPropertiesForms\Distilation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProcessPropertiesForms\Fermentation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProcessPropertiesForms\Rectification.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RecipesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RenameDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\" />
-  </ItemGroup>
+  
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
+
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

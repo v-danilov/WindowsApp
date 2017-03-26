@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="WindowsApp.StatusPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <ContinuumNavigationTransitionInfo/>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  >
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,56,0,0" TextWrapping="Wrap" Text="Статус устройств" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,151,0,0" TextWrapping="Wrap" Text="Устройство" VerticalAlignment="Top" FontSize="18"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="181">
+            <ComboBoxItem Content="Первое" />
+            <ComboBoxItem Content="Второе"/>
+            <ComboBoxItem Content="Третье"/>
+        </ComboBox>
+    </Grid>
+</Page>
