@@ -117,7 +117,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PauseTemplate.xaml.cs">
+    <Compile Include="Templates\PauseTemplate.xaml.cs">
       <DependentUpon>PauseTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProcessPropertiesForms\BeerWort.xaml.cs">
@@ -145,7 +145,10 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsTemplate.xaml.cs">
+    <Compile Include="Templates\PowerTemplate.xaml.cs">
+      <DependentUpon>PowerTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\SettingsTemplate.xaml.cs">
       <DependentUpon>SettingsTemplate.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -203,7 +206,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PauseTemplate.xaml">
+    <Page Include="Templates\PauseTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,7 +242,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsTemplate.xaml">
+    <Page Include="Templates\PowerTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\SettingsTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

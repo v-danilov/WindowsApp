@@ -24,8 +24,9 @@ namespace WindowsApp.LaunchProcessForms
     public sealed partial class Distillation : Page
     {
         public Connection con;
-
+        public string inputMessage;
         private bool heater = false;
+        private bool mixer = false;
 
 
         public Distillation()
@@ -40,6 +41,34 @@ namespace WindowsApp.LaunchProcessForms
             var parameters = (Distillation)e.Parameter;
 
             con = parameters.con;
+            inputMessage = parameters.inputMessage;
+
+            string[] data = inputMessage.Split(';');
+
+            powerBlock.Text = data[4];
+
+            // tankBlock.Text = data[]; index 8??
+            // columnBlock.Text = data[]; index 11??
+
+            //buttonHighliting(data[], data[]) indexes??
+
+            pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString(); //double?
+
+        }
+
+        private void buttonHighliting(string heat, string mix)
+        {
+            if (heat.Equals("1"))
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heater = true;
+            }
+
+            if (mix.Equals("1"))
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixer = true;
+            }
 
         }
 
@@ -49,23 +78,6 @@ namespace WindowsApp.LaunchProcessForms
             var parameters = new PauseTemplate();
             parameters.con = con;
             Frame.Navigate(typeof(PauseTemplate));
-        }
-
-        private void launchButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (!heater)
-            {           
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                heater = true;
-            }
-            else
-            {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                heater = false;
-            }
-            con.SendData("setMKey:1;");
-
         }
 
 
@@ -84,6 +96,36 @@ namespace WindowsApp.LaunchProcessForms
         private void notifyButton_Click(object sender, RoutedEventArgs e)
         {
             //Frame.Navigate(StageSettings);
+        }
+
+        private void heatingButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!heater)
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heater = true;
+            }
+            else
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heater = false;
+            }
+            con.SendData("setMKey:1;");
+        }
+
+        private void mixerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!mixer)
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixer = true;
+            }
+            else
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixer = false;
+            }
+            con.SendData("setKey:3;");
         }
     }
 }

@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Backgrounds/back.png"/>
+            <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Backgrounds/back.png"/>
         </Grid.Background>
         <StackPanel  Orientation="Horizontal" Height="52" VerticalAlignment="Top">
             <StackPanel.Background>

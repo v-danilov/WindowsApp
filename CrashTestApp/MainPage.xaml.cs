@@ -32,13 +32,23 @@ namespace CrashTestApp
         public MainPage()
         {
             this.InitializeComponent();
-            listBox.Items.Add("Fourth");       
+            listBox.Items.Add("Fourth");
+            slider.Value = 20;
+            slider.StepFrequency = 4;
             
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Debug.WriteLine(slider.Value);
+            string g = "Hello";
+            g = g.Substring(1);
+            Debug.WriteLine(g);
         }
     }
 }

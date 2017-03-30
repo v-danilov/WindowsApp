@@ -49,18 +49,18 @@
                             <Setter Property="Margin" Value="0,0,10,5"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button>
+                    <Button x:Name="pauseButton" Click="pauseButton_Click">
                         <TextBlock>
                             Пауза
                         </TextBlock>
                     </Button>
-                    <Button>
+                    <Button x:Name="heatButton" Click="heatButton_Click">
                         <TextBlock>
                             Нагрев
                         </TextBlock>
                     </Button>
                 </StackPanel>
-                <Button Width="160" HorizontalAlignment="Left" Margin="-11,0,0,0">
+                <Button x:Name="powerButton" Width="160" HorizontalAlignment="Left" Margin="-11,0,0,0" Click="powerButton_Click">
                     <TextBlock>
                         Мощность
                     </TextBlock>
@@ -75,23 +75,50 @@
                             <Setter Property="Margin" Value="0,0,10,5"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <Button x:Name="mixerButton" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="mixerButton_Click">
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap">
                             Мешалка
                         </TextBlock>
                     </Button>
-                    <Button Margin="0,0,10,5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button x:Name="changeButton" Margin="0,0,10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Click="changeButton_Click">
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap">
                             Изменение
                         </TextBlock>
                     </Button>
                 </StackPanel>
-                <Button Width="160" Margin="-11,0,-10,0">
+                <Button x:Name="notifyButton" Width="160" Margin="-11,0,-10,0" Click="notifyButton_Click">
                     <TextBlock>
                          Уведомления
                     </TextBlock>
                 </Button>
             </ListView>
+        </StackPanel>
+        <StackPanel Margin="10,57,10,257">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="0,0,5,0"/>
+                    <Setter Property="Height" Value="35"/>
+                    <Setter Property="FontSize" Value="20"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock x:Name="ProcessName" TextWrapping="Wrap" Text="Перемешивание" FontWeight="Bold" Height="40"/>
+            <StackPanel Height="40" Orientation="Horizontal">
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Мощность:" VerticalAlignment="Center"/>
+                <TextBlock x:Name="powerBlock" TextWrapping="Wrap" Text="100" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBlock x:Name="PropertyHeader" TextWrapping="Wrap" Text="Температуры:"/>
+            <StackPanel Height="40" Orientation="Horizontal">
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Бак:" FontWeight="Bold"/>
+                <TextBlock x:Name="tankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Height="30" Orientation="Horizontal">
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Давление в рубашке:"/>
+                <TextBlock x:Name="pressureBlock" TextWrapping="Wrap" Text="17" FontWeight="Bold" Margin="0,0,278,0"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal">
+                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Время:"/>
+                <TextBlock x:Name="timeBlock" TextWrapping="Wrap" Text="00:00" FontWeight="Bold" Margin="0,0,278,0"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

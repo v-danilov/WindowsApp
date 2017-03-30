@@ -23,6 +23,7 @@ namespace WindowsApp.LaunchProcessForms
     public sealed partial class Fermentation : Page
     {
         public Connection con;
+        public string inputMessage;
 
         public Fermentation()
         {
@@ -36,6 +37,50 @@ namespace WindowsApp.LaunchProcessForms
             var parameters = (Fermentation)e.Parameter;
 
             con = parameters.con;
+            inputMessage = parameters.inputMessage;
+
+            string[] data = inputMessage.Split(';');
+
+            powerBlock.Text = data[4];
+
+            // tankBlock.Text = data[?]; 
+            // columnBlock.Text = data[?]; 
+            // setBlock.Text = data[?]; 
+
+            //buttonHighliting(data[?], data[?], data[?], data[?]) 
+
+            //pressureBlock.Text = (Convert.ToDouble(data[?]) / 100).ToString(); 
+
+        }
+
+
+        private void pauseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void heatButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void mixerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void changeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void powerButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void notifyButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

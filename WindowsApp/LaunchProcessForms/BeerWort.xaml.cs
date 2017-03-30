@@ -24,6 +24,7 @@ namespace WindowsApp.LaunchProcessForms
     public sealed partial class BeerWort : Page
     {
         public Connection con;
+        public string inputMessage;
 
         private bool heater = false;
         private bool mixer = false;
@@ -41,7 +42,40 @@ namespace WindowsApp.LaunchProcessForms
             var parameters = (BeerWort)e.Parameter;
 
             con = parameters.con;
+            inputMessage = parameters.inputMessage;
 
+            string[] data = inputMessage.Split(';');
+
+            powerBlock.Text = data[4];
+
+            // tankBlock.Text = data[]; index 8??
+            // columnBlock.Text = data[]; index 11??
+
+            //buttonHighliting(data[], data[], data[]) indexes??
+
+            pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString();
+
+        }
+
+        private void buttonHighliting(string heat, string mix, string pum)
+        {
+            if (heat.Equals("1"))
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heater = true;
+            }
+
+            if (mix.Equals("1"))
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixer = true;
+            }
+
+            if (pum.Equals("1"))
+            {
+                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                pump = true;
+            }
         }
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)

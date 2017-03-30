@@ -24,9 +24,11 @@ namespace WindowsApp.LaunchProcessForms
     public sealed partial class Rectification : Page
     {
         public Connection con;
+        public string inputMessage;
+
         private bool heater = false;
         private bool mixer = false;
-        private bool pump = false;
+        private bool drill = false;
 
         public Rectification()
         {
@@ -40,6 +42,19 @@ namespace WindowsApp.LaunchProcessForms
             var parameters = (Rectification)e.Parameter;
 
             con = parameters.con;
+            inputMessage = parameters.inputMessage;
+
+            string[] data = inputMessage.Split(';');
+
+            powerBlock.Text = data[4];
+
+            // tankBlock.Text = data[?]; 
+            // columnBlock.Text = data[?]; 
+            // setBlock.Text = data[?]; 
+
+            //buttonHighliting(data[?], data[?], data[?], data[?]) 
+
+            //pressureBlock.Text = (Convert.ToDouble(data[?]) / 100).ToString(); 
 
         }
 
@@ -79,6 +94,27 @@ namespace WindowsApp.LaunchProcessForms
                 heater = false;
             }
             con.SendData("setMKey:1;");
+        }
+
+        private void buttonHighliting(string heat, string mix, string dr, string set)
+        {
+            if (heat.Equals("1"))
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heater = true;
+            }
+
+            if (mix.Equals("1"))
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixer = true;
+            }
+
+            if (dr.Equals("1"))
+            {
+                drillButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                drill = true;
+            }
         }
 
         private void changeButton_Click(object sender, RoutedEventArgs e)

@@ -127,7 +127,7 @@
             </StackPanel>
             <StackPanel Height="30" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Давление в рубашке:"/>
-                <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="17" FontWeight="Bold" Margin="0,0,278,0"/>
+                <TextBlock x:Name="pressureBlock" TextWrapping="Wrap" Text="17" FontWeight="Bold" Margin="0,0,278,0"/>
             </StackPanel>
         </StackPanel>
 

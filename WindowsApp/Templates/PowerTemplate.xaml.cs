@@ -15,17 +15,19 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace WindowsApp.LaunchProcessForms
+namespace WindowsApp.Templates
 {
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Boiling : Page
+    public sealed partial class PowerTemplate : Page
     {
+
         public Connection con;
         public string inputMessage;
 
-        public Boiling()
+        public PowerTemplate()
         {
             this.InitializeComponent();
         }
@@ -34,54 +36,28 @@ namespace WindowsApp.LaunchProcessForms
         {
             base.OnNavigatedTo(e);
 
-            var parameters = (Boiling)e.Parameter;
+            var parameters = (SettingsTemplate)e.Parameter;
 
             con = parameters.con;
             inputMessage = parameters.inputMessage;
 
             string[] data = inputMessage.Split(';');
+            ProcessName.Text = data[1].Substring(4);
+            powerSlider.Value = Convert.ToDouble(data[2].Substring(5));
+            powerSlider.StepFrequency = Convert.ToDouble(data[3].Substring(9));
 
-            powerBlock.Text = data[4];
 
-            // tankBlock.Text = data[?]; 
-            // columnBlock.Text = data[?]; 
-            // setBlock.Text = data[?]; 
-
-            //buttonHighliting(data[?], data[?], data[?], data[?]) 
-
-            //pressureBlock.Text = (Convert.ToDouble(data[?]) / 100).ToString(); 
         }
 
 
-        private void pauseButton_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            int p = (int) powerSlider.Value;
+            char c = Convert.ToChar(p);
+            string tmp = "power:" + c + ";";
+            char[] mes = tmp.ToCharArray();
+            con.SendChar(mes);
+            Frame.GoBack();
         }
-
-        private void heatButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void mixerButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void changeButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void powerButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void notifyButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

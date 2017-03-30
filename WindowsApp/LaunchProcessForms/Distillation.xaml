@@ -54,7 +54,7 @@
                             <Run Text="Пауза"/>
                         </TextBlock>
                     </Button>
-                    <Button x:Name="heatingButton">
+                    <Button x:Name="heatingButton" Click="heatingButton_Click">
                         <TextBlock>
                             <Run Text="Нагрев"/>
                         </TextBlock>
@@ -75,7 +75,7 @@
                             <Setter Property="Margin" Value="0,0,10,5"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button x:Name="mixerButton" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <Button x:Name="mixerButton" HorizontalAlignment="Center" VerticalAlignment="Stretch" Click="mixerButton_Click">
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap">
                             <Run Text="Мешалка"/>
                         </TextBlock>

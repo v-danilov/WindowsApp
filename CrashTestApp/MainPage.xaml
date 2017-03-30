@@ -13,5 +13,6 @@
             <ListBoxItem>Second</ListBoxItem>
             <ListBoxItem>Third</ListBoxItem>
         </ListBox>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="10,547,0,0" VerticalAlignment="Top" Width="340" ValueChanged="slider_ValueChanged"/>
     </Grid>
 </Page>

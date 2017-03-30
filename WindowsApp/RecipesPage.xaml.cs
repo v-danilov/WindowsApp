@@ -64,6 +64,7 @@ namespace WindowsApp
             string tmp = "rec:" + c + ";";
             char[] mes = tmp.ToCharArray();
             con.SendChar(mes);
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             //con.SendData("rec:" + selectedRecipe + ";");
 
             int screen_id = selectedRecipe;
@@ -72,16 +73,19 @@ namespace WindowsApp
                 case 0:
                     var manual_parameters = new Manual();
                     manual_parameters.con = con;
+                    manual_parameters.inputMessage = response;
                     Frame.Navigate(typeof(Manual), manual_parameters);
                     break;
                 case 1:                  
                     var distillation_parameters = new Distillation();
                     distillation_parameters.con = con;
+                    distillation_parameters.inputMessage = response;
                     Frame.Navigate(typeof(Distillation), distillation_parameters);
                     break;
                 case 2:
                     var rectification_parameters = new Rectification();
                     rectification_parameters.con = con;
+                    rectification_parameters.inputMessage = response;
                     Frame.Navigate(typeof(Distillation), rectification_parameters);
                     break;
                 case 3:                 
@@ -95,16 +99,19 @@ namespace WindowsApp
                 case 12:
                     var beerwort_parameters = new BeerWort();
                     beerwort_parameters.con = con;
+                    beerwort_parameters.inputMessage = response;
                     Frame.Navigate(typeof(BeerWort), beerwort_parameters);
                     break;
                 case 13:
                     var fermentation_parameters = new Fermentation();
                     fermentation_parameters.con = con;
+                    fermentation_parameters.inputMessage = response;
                     Frame.Navigate(typeof(Fermentation), fermentation_parameters);
                     break;
                 case 14:
                     var boiling_parameters = new Boiling();
                     boiling_parameters.con = con;
+                    boiling_parameters.inputMessage = response;
                     Frame.Navigate(typeof(Boiling), boiling_parameters);
                     break;
 

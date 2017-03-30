@@ -59,19 +59,19 @@
             <TextBlock x:Name="PropertyName3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Температура понижения мощности до рабочей (колонна)" VerticalAlignment="Top"/>
             <TextBox x:Name="lowPowerTemperatureBox" TextWrapping="Wrap" Text="50"/>
             <TextBlock x:Name="PropertyName4" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Температура отключения нагрева (колонна)" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="0"/>
+            <TextBox x:Name="offTempBox" TextWrapping="Wrap" Text="0"/>
             <TextBlock x:Name="PropertyName5" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Рабочая мощность" VerticalAlignment="Top"/>
             <StackPanel Height="44" Orientation="Horizontal" Margin="10,5">
-                <Slider x:Name="workPowerSlider" Margin="0,0,136,0" Background="#66000000" Foreground="#FF0078D7" Width="215"/>
+                <Slider x:Name="workPowerSlider" Margin="0,0,136,0" Background="#66000000" Foreground="#FF0078D7" Width="215" ValueChanged="workPowerSlider_ValueChanged"/>
                 <TextBlock x:Name="workPowerBlock" Margin="-150,12,0,12" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
             <TextBlock x:Name="PropertyName6" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Начальная мощность" VerticalAlignment="Top"/>
             <StackPanel Height="44" Margin="10,5" Orientation="Horizontal">
-                <Slider x:Name="startPowerSlider" Margin="0,0,136,0" Background="#66000000" Foreground="#FF0078D7" Width="215"/>
+                <Slider x:Name="startPowerSlider" Margin="0,0,136,0" Background="#66000000" Foreground="#FF0078D7" Width="215" ValueChanged="startPowerSlider_ValueChanged"/>
                 <TextBlock x:Name="startPowerBlock" Margin="-150,0,0,10" TextWrapping="Wrap" Text="0" Width="10" Height="24" VerticalAlignment="Bottom"/>
             </StackPanel>
             <TextBlock x:Name="PropertyName" TextWrapping="Wrap" Text="Режим работы мешалки"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0">
+            <ComboBox x:Name="mixerModeBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0">
                 <ComboBoxItem>Мешалки нет</ComboBoxItem>
                 <ComboBoxItem>Включена в начале этапа</ComboBoxItem>
                 <ComboBoxItem>Выключена в начале этапа</ComboBoxItem>
