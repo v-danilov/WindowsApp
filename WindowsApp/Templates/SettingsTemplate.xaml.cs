@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -55,11 +56,10 @@ namespace WindowsApp
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
-        }
+        }     
 
-        private void recipesList_KeyDown(object sender, KeyRoutedEventArgs e)
+        private async void recipesList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             int selected_item = -1;
             selected_item = recipesList.SelectedIndex;
 
@@ -78,13 +78,16 @@ namespace WindowsApp
                 switch (selected)
                 {
                     case "Ручной режим":
+                        var dialog = new MessageDialog("Данный процесс не содержит изменяемых параметров");                      
+                        dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 0 });
+                        var res = await dialog.ShowAsync();
                         break;
                     case "Дистилляция":
                         var distillation_parameters = new Distilation();
                         distillation_parameters.con = con;
                         distillation_parameters.inputMessage = response;
                         Frame.Navigate(typeof(Distilation), distillation_parameters);
-                        break;
+                        break;                  
                 }
             }
         }

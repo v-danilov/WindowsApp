@@ -37,11 +37,14 @@
                 <Style TargetType="ListView">
                     <Setter Property="Width" Value="160"/>
                     <Setter Property="Height" Value="50"/>
-                    <Setter Property="Margin" Value="0,0,40,5"/>
+                    <Setter Property="Margin" Value="0,0,50,5"/>
+                    <Setter Property="Padding" Value="0,0,-10,0"/>
                 </Style>
+                
+
             </StackPanel.Resources>
-            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Margin="0,0,40,0" Width="172">
-                <StackPanel Orientation="Horizontal" Margin="-11,0">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Margin="0,0,50,0" Width="163" Padding="0,0,-10,0">
+                <StackPanel Orientation="Horizontal" Margin="-11,0" Padding="0,0,-10,0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Width" Value="75"/>
@@ -54,7 +57,7 @@
                             <Run Text="Пауза"/>
                         </TextBlock>
                     </Button>
-                    <Button x:Name="heatButton" Click="heatButton_Click">
+                    <Button x:Name="heatingButton" Click="heatButton_Click">
                         <TextBlock>
                             <Run Text="Нагрев"/>
                         </TextBlock>
@@ -66,8 +69,8 @@
                     </TextBlock>
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="168" Margin="-40,0,40,0" Padding="0">
-                <StackPanel Orientation="Horizontal" Width="165" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-11,0,-10,0" Padding="0">
+            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="164" Margin="-40,0,40,0" Padding="0,0,-10,0">
+                <StackPanel Orientation="Horizontal" Width="165" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-11,0,-10,0" Padding="0,0,-10,0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Width" Value="75"/>
@@ -110,6 +113,7 @@
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Бак:" FontWeight="Bold"/>
                 <TextBlock x:Name="tankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+                <TextBlock x:Name="targetTankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,2.5,5,2.5"/>
             </StackPanel>
             <StackPanel Height="30" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Давление в рубашке:"/>

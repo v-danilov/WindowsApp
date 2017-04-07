@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsApp.Templates;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -43,25 +44,49 @@ namespace WindowsApp.LaunchProcessForms
             con = parameters.con;
             inputMessage = parameters.inputMessage;
 
-            string[] data = inputMessage.Split(';');
+            updateData(inputMessage);
 
-            powerBlock.Text = data[4];
-
-            // tankBlock.Text = data[]; index 8??
-            // columnBlock.Text = data[]; index 11??
-
-            //buttonHighliting(data[], data[]) indexes??
-
-            pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString(); //double?
+          
 
         }
 
-        private void buttonHighliting(string heat, string mix)
+
+        private void updateData(string mes)
         {
+
+            string[] data = mes.Split(';');
+
+            //Power
+            powerBlock.Text = data[4].Substring(5);
+
+            //Temp
+            tankBlock.Text = Math.Round(Convert.ToDouble(data[7].Substring(4)) / 100, 1).ToString();
+            columnBlock.Text = Math.Round(Convert.ToDouble(data[8].Substring(0)) / 100, 1).ToString();
+
+            //TargTemp
+            targetTankBlock.Text = "/" + Math.Round(Convert.ToDouble(data[13].Substring(0)) / 100, 1).ToString();
+            //targetColumnBlock.Text = "/" + data[14].Substring(0);
+
+            //Pressure
+            pressureBlock.Text = Math.Round((Convert.ToDouble(data[16].Substring(12)) / 100), 2).ToString();
+
+            //HeatButton
+            string heat = data[5].Substring(4);
+
+            //MixerButton
+            string mix = data[17].Substring(5);        
+
+
+            //Highlighting
             if (heat.Equals("1"))
             {
                 heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 heater = true;
+            }
+            else
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heater = false;
             }
 
             if (mix.Equals("1"))
@@ -69,22 +94,32 @@ namespace WindowsApp.LaunchProcessForms
                 mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 mixer = true;
             }
+            else
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixer = false;
+            }        
 
         }
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
             con.SendData("setKey:1;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
-            Frame.Navigate(typeof(PauseTemplate));
+            Frame.Navigate(typeof(PauseTemplate), parameters);
         }
 
 
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
             con.SendData("setKey:2;");
-            //Frame.Navigate(powerSettings);
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            var power_parameters = new PowerTemplate();
+            power_parameters.con = con;
+            power_parameters.inputMessage = response;
+            Frame.Navigate(typeof(PowerTemplate), power_parameters);
         }
 
         private void changeButton_Click(object sender, RoutedEventArgs e)

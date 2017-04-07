@@ -40,7 +40,8 @@ namespace CrashTestApp
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Debug.WriteLine(listBox.SelectedIndex);
+            listBox.SelectedIndex = -1;
         }
 
         private void slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

@@ -91,6 +91,7 @@
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Бак:" FontWeight="Bold"/>
                 <TextBlock x:Name="tankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+                <TextBlock x:Name="targetTankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,2.5,5,2.5"/>
             </StackPanel>
             <StackPanel Height="30" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Давление в рубашке:"/>

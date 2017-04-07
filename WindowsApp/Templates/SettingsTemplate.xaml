@@ -34,7 +34,7 @@
             </TextBlock>
             <TextBlock x:Name="titleBlock" TextWrapping="Wrap" Text="Доктор Губер - клиент" FontSize="20" Width="272" FontWeight="Bold" Height="36" VerticalAlignment="Bottom" Foreground="White" Margin="0,0,0,4"/>
         </StackPanel>
-        <ListBox x:Name="recipesList" Margin="0,52,0,0" Height="539" VerticalAlignment="Top" Foreground="Black" Background="{x:Null}" KeyDown="recipesList_KeyDown"/>
+        <ListBox x:Name="recipesList" Margin="0,52,0,0" Height="539" VerticalAlignment="Top" Foreground="Black" Background="{x:Null}" SelectionChanged="recipesList_SelectionChanged"/>
         <StackPanel Height="49" Orientation="Vertical" HorizontalAlignment="Center" Width="360" VerticalAlignment="Bottom">
             <Button x:Name="BackButton" Margin="0,14,0,0" Content="Назад" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="36" Click="BackButton_Click"/>
         </StackPanel>

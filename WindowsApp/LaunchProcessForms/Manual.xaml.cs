@@ -60,16 +60,15 @@ namespace WindowsApp.LaunchProcessForms
             powerBlock.Text = data[4].Substring(5);
 
             //Temp
-            tankBlock.Text = data[7].Substring(4);
-            columnBlock.Text = data[8].Substring(0);
+            tankBlock.Text = Math.Round(Convert.ToDouble(data[7].Substring(4)) / 100, 1).ToString();           
+            columnBlock.Text = Math.Round(Convert.ToDouble(data[8].Substring(0)) /100, 1).ToString();
 
             //TargTemp
             //targetTankBlock.Text = "/" + data[13].Substring(0);
             //targetColumnBlock.Text = "/" + data[14].Substring(0);
 
             //Pressure
-            
-            pressureBlock.Text = (Convert.ToDouble(data[16].Substring(12)) / 100).ToString();
+            pressureBlock.Text = pressureBlock.Text = Math.Round((Convert.ToDouble(data[16].Substring(12)) / 100), 2).ToString();
 
             //HeatButton
             string heat = data[5].Substring(4);

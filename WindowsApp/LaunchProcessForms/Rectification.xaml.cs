@@ -58,16 +58,17 @@ namespace WindowsApp.LaunchProcessForms
             powerBlock.Text = data[4].Substring(5);
 
             //Temp
-            tankBlock.Text = data[7].Substring(4);
-            columnBlock.Text = data[8].Substring(0);
-            setBlock.Text = Convert.ToDouble(data[21].Substring(4)).ToString();
+            tankBlock.Text = Math.Round(Convert.ToDouble(data[7].Substring(4)) / 100, 1).ToString();
+            columnBlock.Text = Math.Round(Convert.ToDouble(data[8].Substring(0)) / 100, 1).ToString();
+            setBlock.Text = Math.Round(Convert.ToDouble(data[21].Substring(4)) / 100, 1).ToString();
+
 
             //TargTemp
-            //targetTankBlock.Text = "/" + data[13].Substring(0);
+            targetTankBlock.Text = "/" + Math.Round(Convert.ToDouble(data[13].Substring(0)) / 100, 1).ToString();
             //targetColumnBlock.Text = "/" + data[14].Substring(0);
 
             //Pressure
-            pressureBlock.Text = (Convert.ToDouble(data[16].Substring(12)) / 100).ToString();
+            pressureBlock.Text = Math.Round((Convert.ToDouble(data[16].Substring(12)) / 100), 2).ToString();
 
             //HeatButton
             string heat = data[5].Substring(4);
@@ -119,7 +120,8 @@ namespace WindowsApp.LaunchProcessForms
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            con.SendData("setKey:1");
+            con.SendData("setKey:1;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
             Frame.Navigate(typeof(PauseTemplate), parameters);
@@ -150,11 +152,12 @@ namespace WindowsApp.LaunchProcessForms
 
         private void powerButton_Click(object sender, RoutedEventArgs e)
         {
-            con.SendData("setKey:2");
-            var parameters = new PowerTemplate();
-            parameters.con = con;
-            parameters.inputMessage = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
-            Frame.Navigate(typeof(PauseTemplate), parameters);
+            con.SendData("setKey:2;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            var power_parameters = new PowerTemplate();
+            power_parameters.con = con;
+            power_parameters.inputMessage = response;
+            Frame.Navigate(typeof(PowerTemplate), power_parameters);
         }
 
         private void notifyButton_Click(object sender, RoutedEventArgs e)
@@ -171,7 +174,9 @@ namespace WindowsApp.LaunchProcessForms
 
         private void drillButton_Click(object sender, RoutedEventArgs e)
         {
-            //Режим бур. Отображение в форме
+            con.SendData("setMKey:3;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            updateData(response);
         }
     }
 }

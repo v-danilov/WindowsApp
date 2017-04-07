@@ -44,25 +44,48 @@ namespace WindowsApp.LaunchProcessForms
             con = parameters.con;
             inputMessage = parameters.inputMessage;
 
-            string[] data = inputMessage.Split(';');
-
-            powerBlock.Text = data[4];
-
-            // tankBlock.Text = data[]; index 8??
-            // columnBlock.Text = data[]; index 11??
-
-            //buttonHighliting(data[], data[], data[]) indexes??
-
-            pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString();
+            updateData(inputMessage);
 
         }
 
-        private void buttonHighliting(string heat, string mix, string pum)
+        private void updateData(string mes)
         {
+
+            string[] data = mes.Split(';');
+
+            //Power
+            powerBlock.Text = data[4].Substring(5);
+
+            //Temp
+            tankBlock.Text = Math.Round(Convert.ToDouble(data[7].Substring(4)) / 100, 1).ToString();
+
+            //TargTemp
+            targetTankBlock.Text = "/" + Math.Round(Convert.ToDouble(data[13].Substring(0)) / 100, 1).ToString();
+            //targetColumnBlock.Text = "/" + data[14].Substring(0);
+
+            //Pressure
+            pressureBlock.Text = Math.Round((Convert.ToDouble(data[16].Substring(12)) / 100), 2).ToString();
+
+            //HeatButton
+            string heat = data[5].Substring(4);
+
+            //MixerButton
+            string mix = data[17].Substring(5);
+
+            //PumpButton
+            string pmp = data[20].Substring(5);
+
+
+            //Highlighting
             if (heat.Equals("1"))
             {
                 heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 heater = true;
+            }
+            else
+            {
+                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heater = false;
             }
 
             if (mix.Equals("1"))
@@ -70,12 +93,25 @@ namespace WindowsApp.LaunchProcessForms
                 mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 mixer = true;
             }
+            else
+            {
+                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixer = false;
+            }
 
-            if (pum.Equals("1"))
+            if (pmp.Equals("1"))
             {
                 pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                pump = true;
+                pump = false;
             }
+            else
+            {
+                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                pump = false;
+            }
+
+
+
         }
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)

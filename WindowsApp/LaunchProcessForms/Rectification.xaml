@@ -41,12 +41,14 @@
                     <Setter Property="Margin" Value="-12,0,0,5"/>
 
                 </Style>
+                
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center"/>
                     <Setter Property="TextAlignment" Value="Center"/>
                 </Style>
                 <Style TargetType="ListView">
-                    <Setter Property="Margin" Value="0,0,0,0"/>
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                    <Setter Property="Padding" Value="0,0,-10,0"/>
                 </Style>
             </StackPanel.Resources>
             <ListView x:Name="listView1" Height="100">
@@ -116,6 +118,7 @@
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Бак:" FontWeight="Bold"/>
                 <TextBlock x:Name="tankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+                <TextBlock x:Name="targetTankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,2.5,5,2.5"/>
             </StackPanel>
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Колонна:" FontWeight="Bold"/>
