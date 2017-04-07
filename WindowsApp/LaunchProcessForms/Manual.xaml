@@ -49,7 +49,7 @@
                     <Setter Property="Margin" Value="0,0,10,0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <ListView x:Name="listView" Height="100">
+            <ListView x:Name="listView" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="pauseButton" Click="pauseButton_Click">
                     <TextBlock TextWrapping="Wrap">Пауза</TextBlock>
                 </Button>
@@ -57,7 +57,7 @@
                     <TextBlock TextWrapping="Wrap">Мощность</TextBlock>
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy" Height="100">
+            <ListView x:Name="listView_Copy" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="heatingButton" Click="heatingButton_Click">
                     <TextBlock TextWrapping="Wrap">Нагрев</TextBlock>
                 </Button>
@@ -66,7 +66,7 @@
 
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy1" Height="100">
+            <ListView x:Name="listView_Copy1" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="mixerButton" Click="mixerButton_Click">
                     <TextBlock TextWrapping="Wrap"> Мешалка</TextBlock>
                 </Button>

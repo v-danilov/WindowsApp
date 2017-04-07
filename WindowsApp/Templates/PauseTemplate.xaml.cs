@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -66,13 +67,40 @@ namespace WindowsApp
             Frame.GoBack();
         }
 
-        private void StopButton_Click(object sender, RoutedEventArgs e)
+        private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
             con.SendData("setKey:2;");
-            var First_Frame = Frame.BackStack.First();
-            Frame.BackStack.Clear();
-            Frame.BackStack.Add(First_Frame);
-            Frame.Navigate(typeof(RecipesPage));
+            con.ReadData();
+            var dialog = new MessageDialog("Завершить рецепт?");
+            dialog.Title = "Завершение процесса";
+            dialog.Commands.Add(new UICommand { Label = "Нет", Id = 0 });
+            dialog.Commands.Add(new UICommand { Label = "Да", Id = 1 });
+            var res = await dialog.ShowAsync();
+            if ((int)res.Id == 1)
+            {
+                con.SendData("setKey:1;");
+                con.ReadData();
+                dialog = new MessageDialog("Рецепт завершён");
+                dialog.Title = "Завершение процесса";
+                dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 1 });
+                res = await dialog.ShowAsync();
+                if((int)res.Id == 1)
+                {
+                    con.SendData("setKey:1;");
+                    string response = con.ReadData();
+                    var First_Frame = Frame.BackStack.First();
+                    Frame.BackStack.Clear();
+                    Frame.BackStack.Add(First_Frame);
+                    var parameters = new RecipesPage();
+                    parameters.con = con;
+                    parameters.inputMessage = response;
+                    Frame.Navigate(typeof(RecipesPage), parameters);
+                }
+                
+
+            }
+
+            
         }
 
         private void SkipButton_Click(object sender, RoutedEventArgs e)
