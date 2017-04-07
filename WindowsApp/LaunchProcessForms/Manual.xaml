@@ -92,10 +92,12 @@
             <StackPanel Height="40" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Бак:" FontWeight="Bold"/>
                 <TextBlock x:Name="tankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+                <!--TextBlock x:Name="targetTankBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,2.5,5,2.5"/-->
             </StackPanel>
             <StackPanel Height="40" Orientation="Horizontal">
-                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Колонна:" FontWeight="Bold"/>
-                <TextBlock x:Name="columnBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,0,278,0"/>
+                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Колонна:" FontWeight="Bold"/>
+                <TextBlock x:Name="columnBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold"/>
+                <!--TextBlock x:Name="targetColumnBlock" TextWrapping="Wrap" Text="20.0" FontWeight="Bold" Margin="0,2.5,5,2.5"/-->
             </StackPanel>
             <StackPanel Height="30" Orientation="Horizontal">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Давление в рубашке:"/>

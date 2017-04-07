@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -54,16 +55,32 @@ namespace WindowsApp.LaunchProcessForms
         {
 
             string[] data = mes.Split(';');
-            powerBlock.Text = data[4];
+            
+            //Power
+            powerBlock.Text = data[4].Substring(5);
 
-            // tankBlock.Text = data[]; index 8??
-            // columnBlock.Text = data[]; index 11??
-          
+            //Temp
+            tankBlock.Text = data[7].Substring(4);
+            columnBlock.Text = data[8].Substring(0);
 
-            pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString();
+            //TargTemp
+            //targetTankBlock.Text = "/" + data[13].Substring(0);
+            //targetColumnBlock.Text = "/" + data[14].Substring(0);
 
-            /*
-             * heat/mix/pum - data[?]/data[?]/data[?] indexes?
+            //Pressure
+            
+            pressureBlock.Text = (Convert.ToDouble(data[16].Substring(12)) / 100).ToString();
+
+            //HeatButton
+            string heat = data[5].Substring(4);
+
+            //MixerButton
+            string mix = data[17].Substring(5);
+
+            //PumpButton
+            string pum = data[27].Substring(4);
+
+            //Highlighting
             if (heat.Equals("1"))
             {
                 heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
@@ -96,7 +113,7 @@ namespace WindowsApp.LaunchProcessForms
                 pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
                 pump = false;
             }
-            */
+            
 
 
         }
@@ -115,7 +132,7 @@ namespace WindowsApp.LaunchProcessForms
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
-            Frame.Navigate(typeof(PauseTemplate));
+            Frame.Navigate(typeof(PauseTemplate), parameters);
         }
 
         private void mixerButton_Click(object sender, RoutedEventArgs e)

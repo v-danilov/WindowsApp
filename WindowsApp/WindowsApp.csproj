@@ -151,6 +151,9 @@
     <Compile Include="Templates\SettingsTemplate.xaml.cs">
       <DependentUpon>SettingsTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Templates\TemperatureTemplate.xaml.cs">
+      <DependentUpon>TemperatureTemplate.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\SettingsTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\TemperatureTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

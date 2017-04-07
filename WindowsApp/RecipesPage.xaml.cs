@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WindowsApp.LaunchProcessForms;
+using WindowsApp.Templates;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -77,16 +78,16 @@ namespace WindowsApp
                     Frame.Navigate(typeof(Manual), manual_parameters);
                     break;
                 case 1:                  
-                    var distillation_parameters = new Distillation();
+                    var distillation_parameters = new TemperatureTemplate();
                     distillation_parameters.con = con;
                     distillation_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Distillation), distillation_parameters);
+                    Frame.Navigate(typeof(TemperatureTemplate), distillation_parameters);
                     break;
                 case 2:
-                    var rectification_parameters = new Rectification();
+                    var rectification_parameters = new TemperatureTemplate();
                     rectification_parameters.con = con;
                     rectification_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Distillation), rectification_parameters);
+                    Frame.Navigate(typeof(TemperatureTemplate), rectification_parameters);
                     break;
                 case 3:                 
                 case 4:          
