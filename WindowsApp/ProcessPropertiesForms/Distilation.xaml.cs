@@ -44,62 +44,39 @@ namespace WindowsApp.ProcessPropertiesVeiw
         {
 
             string[] data = mes.Split(';');
-           // powerBlock.Text = data[4];
+            int startpower = Convert.ToInt32(data[5].Substring(5, data[5].Length - 5));
+            int mixerMode = Convert.ToInt32(data[6].Substring(data[6].Length-1));
+            int powerStep = Convert.ToInt32(data[7].Substring(9, data[7].Length-9));
+            int finTemp = Convert.ToInt32(data[8].Substring(8, data[8].Length - 8))/10;
+            int closeTemp = Convert.ToInt32(data[9])/10;
+            int lowPowerTemp = Convert.ToInt32(data[10])/10;
+            int workPower = Convert.ToInt32(data[12].Substring(6, data[12].Length-6))/10;
 
-            // tankBlock.Text = data[]; index 8??
-            // columnBlock.Text = data[]; index 11??
-
-
-            //pressureBlock.Text = (Convert.ToDouble(data[16]) / 100).ToString();
-
-            /*
-             * heat/mix/pum - data[?]/data[?]/data[?] indexes?
-            if (heat.Equals("1"))
-            {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                heater = true;
-            }
-            else
-            {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                heater = false;
-            }
-
-            if (mix.Equals("1"))
-            {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                mixer = true;
-            }
-            else
-            {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                mixer = false;
-            }
-
-            if (pum.Equals("1"))
-            {
-                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                pump = true;
-            }
-            else
-            {
-                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                pump = false;
-            }
-            */
+            finTemperatureBox.Text = finTemp.ToString();
+            closeTemperatureBox.Text = closeTemp.ToString();
+            lowPowerTemperatureBox.Text = lowPowerTemp.ToString();
+            workPowerSlider.Value = workPower;
+            workPowerSlider.StepFrequency = powerStep;
+            startPowerSlider.Value = startpower;
+            startPowerSlider.StepFrequency = powerStep;
+            mixerModeBox.SelectedIndex = mixerMode;
 
 
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            double finTemp = Convert.ToDouble(finTemperatureBox.Text);
-            double closeTemp = Convert.ToDouble(closeTemperatureBox.Text);
-            double lowPower = Convert.ToDouble(lowPowerTemperatureBox.Text);
-            double offTemp = Convert.ToDouble(offTempBox.Text);
-            double workPower = workPowerSlider.Value;
-            double startPower = startPowerSlider.Value;
-            int mixMode = mixerModeBox.SelectedIndex;
+            int finTemp = Convert.ToInt32(finTemperatureBox.Text);
+           int closeTemp = Convert.ToInt32(closeTemperatureBox.Text);
+            int lowPower = Convert.ToInt32(lowPowerTemperatureBox.Text);
+            int offTemp = Convert.ToInt32(offTempBox.Text);
+            int workPower = (int)workPowerSlider.Value;
+            int startPower = (int)startPowerSlider.Value;
+            int mixMode = mixerModeBox.SelectedIndex;         
+            string data = "t1:" + finTemp + ";" + closeTemp + ";" + lowPower + ";" + 
+                workPower + ";" + 0 + ";" + 0 + ";" + startPower + ";" + mixMode + ";" + 0 + ";" + 0 + ";" + 0 + ";";
+            con.SendData(data);
+            Frame.GoBack();
         }
 
         private void workPowerSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
