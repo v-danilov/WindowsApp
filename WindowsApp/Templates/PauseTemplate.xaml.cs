@@ -25,6 +25,7 @@ namespace WindowsApp
     public sealed partial class PauseTemplate : Page
     {
         public Connection con;
+        public string inputMessage;
 
         private Stopwatch stopwatch;
         private DispatcherTimer timer;
@@ -40,24 +41,29 @@ namespace WindowsApp
         {
             base.OnNavigatedTo(e);
 
+            var parameters = (PauseTemplate)e.Parameter;
+            con = parameters.con;
+            inputMessage = parameters.inputMessage;
+
             stopwatch = new Stopwatch();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
-            stopwatch.Start();
-
-            var parameters = (PauseTemplate)e.Parameter;
-
-            //Null?
-            con = parameters.con;
+           
+            
+            stopwatch.Start();         
 
         }
 
         private void Timer_Tick(object sender, object e)
         {
 
-            timerBlock.Text = String.Format("{0:00}:{1:00}", stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds);
+            string[] tmp = inputMessage.Split(';');
+            double elapsed_time = Convert.ToDouble(tmp[2].Substring(4, tmp[2].Length - 4));
+            TimeSpan ts = TimeSpan.FromSeconds(stopwatch.Elapsed.Seconds + elapsed_time);
+            
+            timerBlock.Text = String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
 
         }
 
@@ -69,8 +75,11 @@ namespace WindowsApp
 
         private async void StopButton_Click(object sender, RoutedEventArgs e)
         {
+            
             con.SendData("setKey:2;");
-            con.ReadData();
+            
+
+            Debug.WriteLine(con.ReadData());
             var dialog = new MessageDialog("Завершить рецепт?");
             dialog.Title = "Завершение процесса";
             dialog.Commands.Add(new UICommand { Label = "Нет", Id = 0 });

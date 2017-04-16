@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -49,7 +50,7 @@ namespace WindowsApp.Templates
 
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string temp = temperatureBox.Text;
             //char c = Convert.ToChar(p);
@@ -58,22 +59,37 @@ namespace WindowsApp.Templates
             //con.SendChar(mes);
             con.SendData(tmp);
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
-            int screenNum = Convert.ToInt32(response.Substring(response.IndexOf("ShowTemp") + 8,1)); 
-            Debug.WriteLine("Redirecting to screen#" + screenNum);
+            if (response.Contains("PUSH"))
+            {
+                string message = response.Substring(response.IndexOf("Name") + 4, response.Length - 10);
+                var dialog = new MessageDialog(message);
+                dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 1 });
+                await dialog.ShowAsync();
+                con.SendData("setKey:1;");              
+                con.ReadBytes();
+                Frame.GoBack();
+                return;
+            }
+            else
+            {
+                int screenNum = Convert.ToInt32(response.Substring(response.IndexOf("ShowTemp") + 8, 1));
+                Debug.WriteLine("Redirecting to screen#" + screenNum);
 
-            switch(screenNum){
-                case 2:
-                    var parameters = new Distillation();
-                    parameters.con = con;
-                    parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Distillation), parameters);
-                    break;
-                case 5:
-                    var parameters_r = new Rectification();
-                    parameters_r.con = con;
-                    parameters_r.inputMessage = response;
-                    Frame.Navigate(typeof(Rectification), parameters_r);
-                    break;
+                switch (screenNum)
+                {
+                    case 2:
+                        var parameters = new Distillation();
+                        parameters.con = con;
+                        parameters.inputMessage = response;
+                        Frame.Navigate(typeof(Distillation), parameters);
+                        break;
+                    case 5:
+                        var parameters_r = new Rectification();
+                        parameters_r.con = con;
+                        parameters_r.inputMessage = response;
+                        Frame.Navigate(typeof(Rectification), parameters_r);
+                        break;
+                }
             }
             
         }

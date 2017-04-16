@@ -47,7 +47,8 @@ namespace CrashTestApp
         private void slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             string tmp = "screen:1;NameРектификация;Mode3;Duration0;Power100;Heat1;ShowTemp5;Temp0;-6796;7679;3338;1000;TargTemp1000;";
-            Debug.WriteLine(tmp.IndexOf("ShowTemp"));
+            string substring = tmp.Substring(tmp.IndexOf("ShowTemp") + 8, 1);
+            Debug.WriteLine(substring);
             
         }
     }

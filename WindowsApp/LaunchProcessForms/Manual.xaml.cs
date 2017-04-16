@@ -82,34 +82,34 @@ namespace WindowsApp.LaunchProcessForms
             //Highlighting
             if (heat.Equals("1"))
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 heater = true;
             }
             else
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60,0,0,0));
                 heater = false;
             }
 
             if (mix.Equals("1"))
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 mixer = true;
             }
             else
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 mixer = false;
             }
 
             if (pum.Equals("1"))
             {
-                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                pumpButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 pump = true;
             }
             else
             {
-                pumpButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                pumpButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 pump = false;
             }
             

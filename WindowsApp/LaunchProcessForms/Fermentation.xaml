@@ -40,7 +40,7 @@
                     <Setter Property="Margin" Value="0,0,50,5"/>
                 </Style>
             </StackPanel.Resources>
-            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="165" FocusVisualMargin="0" Padding="0,0,-10,0">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="165" Padding="0,0,-10,0">
                 <StackPanel Orientation="Horizontal" Margin="-11,0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">

@@ -57,7 +57,7 @@ namespace WindowsApp
             
         }
 
-        private void launchButton_Click(object sender, RoutedEventArgs e)
+        private async void launchButton_Click(object sender, RoutedEventArgs e)
         {
 
             int selectedRecipe = recipesList.SelectedIndex;
@@ -66,56 +66,69 @@ namespace WindowsApp
             char[] mes = tmp.ToCharArray();
             con.SendChar(mes);
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
-            //con.SendData("rec:" + selectedRecipe + ";");
-
-            int screen_id = selectedRecipe;
-            switch (screen_id)
+            if (response.StartsWith("PUSH"))
             {
-                case 0:
-                    var manual_parameters = new Manual();
-                    manual_parameters.con = con;
-                    manual_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Manual), manual_parameters);
-                    break;
-                case 1:                  
-                    var distillation_parameters = new TemperatureTemplate();
-                    distillation_parameters.con = con;
-                    distillation_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(TemperatureTemplate), distillation_parameters);
-                    break;
-                case 2:
-                    var rectification_parameters = new TemperatureTemplate();
-                    rectification_parameters.con = con;
-                    rectification_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(TemperatureTemplate), rectification_parameters);
-                    break;
-                case 3:                 
-                case 4:          
-                case 5:
-                case 6:          
-                case 8:           
-                case 9:                   
-                case 10:            
-                case 11:       
-                case 12:
-                    var beerwort_parameters = new BeerWort();
-                    beerwort_parameters.con = con;
-                    beerwort_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(BeerWort), beerwort_parameters);
-                    break;
-                case 13:
-                    var fermentation_parameters = new Fermentation();
-                    fermentation_parameters.con = con;
-                    fermentation_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Fermentation), fermentation_parameters);
-                    break;
-                case 14:
-                    var boiling_parameters = new Boiling();
-                    boiling_parameters.con = con;
-                    boiling_parameters.inputMessage = response;
-                    Frame.Navigate(typeof(Boiling), boiling_parameters);
-                    break;
+                string message = response.Substring(response.IndexOf("Name") + 4, response.Length - 10);
+                var dialog = new MessageDialog(message);
+                dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 1 });
+                await dialog.ShowAsync();
+                con.SendData("setKey:1;");
+                con.SendData("setKey:1;");
+                con.ReadBytes();
+                return;
+            }
+            else
+            {
 
+                int screen_id = selectedRecipe;
+                switch (screen_id)
+                {
+                    case 0:
+                        var manual_parameters = new Manual();
+                        manual_parameters.con = con;
+                        manual_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(Manual), manual_parameters);
+                        break;
+                    case 1:
+                        var distillation_parameters = new TemperatureTemplate();
+                        distillation_parameters.con = con;
+                        distillation_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(TemperatureTemplate), distillation_parameters);
+                        break;
+                    case 2:
+                        var rectification_parameters = new TemperatureTemplate();
+                        rectification_parameters.con = con;
+                        rectification_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(TemperatureTemplate), rectification_parameters);
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        var beerwort_parameters = new BeerWort();
+                        beerwort_parameters.con = con;
+                        beerwort_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(BeerWort), beerwort_parameters);
+                        break;
+                    case 13:
+                        var fermentation_parameters = new Fermentation();
+                        fermentation_parameters.con = con;
+                        fermentation_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(Fermentation), fermentation_parameters);
+                        break;
+                    case 14:
+                        var boiling_parameters = new Boiling();
+                        boiling_parameters.con = con;
+                        boiling_parameters.inputMessage = response;
+                        Frame.Navigate(typeof(Boiling), boiling_parameters);
+                        break;
+
+                }
             }
 
         }
