@@ -66,9 +66,9 @@ namespace WindowsApp.ProcessPropertiesVeiw
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            int finTemp = Convert.ToInt32(finTemperatureBox.Text) * 10;
-           int closeTemp = Convert.ToInt32(closeTemperatureBox.Text) * 10;
-            int lowPower = Convert.ToInt32(lowPowerTemperatureBox.Text) * 10;
+            int finTemp = Convert.ToInt32(finTemperatureBox.Text);
+           int closeTemp = Convert.ToInt32(closeTemperatureBox.Text);
+            int lowPower = Convert.ToInt32(lowPowerTemperatureBox.Text);
             int offTemp = Convert.ToInt32(offTempBox.Text);
             int workPower = (int)workPowerSlider.Value;
             int startPower = (int)startPowerSlider.Value;

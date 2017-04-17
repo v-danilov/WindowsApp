@@ -55,7 +55,6 @@ namespace WindowsApp
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
             Frame.GoBack();
         }     
 
