@@ -83,34 +83,34 @@ namespace WindowsApp.LaunchProcessForms
             //Highlighting
             if (heat.Equals("1"))
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 heater = true;
             }
             else
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 heater = false;
             }
 
             if (mix.Equals("1"))
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 mixer = true;
             }
             else
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 mixer = false;
             }
 
             if (dri.Equals("1"))
             {
-                drillButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                drillButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 drill = false;
             }
             else
             {
-                drillButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                drillButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 drill = false;
             }
 
@@ -124,6 +124,7 @@ namespace WindowsApp.LaunchProcessForms
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
+            parameters.inputMessage = response;
             Frame.Navigate(typeof(PauseTemplate), parameters);
         }
 
@@ -146,7 +147,7 @@ namespace WindowsApp.LaunchProcessForms
        
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
-            con.SendData("setKey:4;");
+            //con.SendData("setKey:4;");
             //Frame.Navigate(StageSettings);
         }
 

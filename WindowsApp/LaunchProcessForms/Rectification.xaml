@@ -51,7 +51,7 @@
                     <Setter Property="Padding" Value="0,0,-10,0"/>
                 </Style>
             </StackPanel.Resources>
-            <ListView x:Name="listView1" Height="100">
+            <ListView x:Name="listView1" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="pauseButton" Click="pauseButton_Click">
                     <TextBlock TextWrapping="Wrap">
                         Пауза
@@ -63,7 +63,7 @@
                     </TextBlock>
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy3" Height="100">
+            <ListView x:Name="listView_Copy3" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="heatingButton" Click="heatingButton_Click">
                     <TextBlock TextWrapping="Wrap">
                         Нагрев
@@ -76,7 +76,7 @@
 
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy4" Height="100">
+            <ListView x:Name="listView_Copy4" Height="100" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="mixerButton" Click="mixerButton_Click">
                     <TextBlock TextWrapping="Wrap">
                         Мешалка
@@ -88,7 +88,7 @@
                     </TextBlock>
                 </Button>
             </ListView>
-            <ListView x:Name="listView1_Copy" Height="100" Margin="0,6,10,6">
+            <ListView x:Name="listView1_Copy" Height="100" Margin="0,6,10,6" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <Button x:Name="changeButton" Click="changeButton_Click">
                     <TextBlock TextWrapping="Wrap">
                         Изменение

@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net;
+
+
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using System.Net.Sockets;
-using Windows.Storage.Streams;
-using System.Net;
+using System.Text;
 
 namespace WindowsApp
 {
     public class Connection
     {
         private StreamSocket streamsocket;
+        private TcpClient client;
 
         public Connection()
         {
@@ -23,31 +23,36 @@ namespace WindowsApp
         }
 
         async public void Connect()
-        {                        
-                HostName serverHost = new HostName("192.168.4.1");              
-                string serverPort = "80";
-                await streamsocket.ConnectAsync(serverHost, serverPort);
+        {
+            HostName serverHost = new HostName("192.168.4.1");
+            string serverPort = "80";
+            await streamsocket.ConnectAsync(serverHost, serverPort);
 
-                IPAddress localAddr = IPAddress.Parse("192.168.4.1");
-                //TcpListener server = new TcpListener(localAddr, 9595);
-
+            client = new TcpClient();
+            await client.ConnectAsync("192.168.4.1", 8888);
+            //NetworkStream stream = client.GetStream();
 
         }
 
-        async public void SendData(string mes)
+        public void SendData(string mes)
         {
-            Stream streamOut = streamsocket.OutputStream.AsStreamForWrite();
-            StreamWriter writer = new StreamWriter(streamOut);
-            string request = mes;
-            await writer.WriteLineAsync(request);
-            await writer.FlushAsync();
+            //Stream streamOut = streamsocket.OutputStream.AsStreamForWrite();
+            //StreamWriter writer = new StreamWriter(streamOut);
+            //string request = mes;
+            //await writer.WriteLineAsync(request);
+            //await writer.FlushAsync();
+            NetworkStream stream = client.GetStream();
+            byte[] data = Encoding.ASCII.GetBytes(mes);
+            stream.Write(data, 0, data.Length);
+            stream.Flush();
+
+
         }
 
         async public void SendChar(char[] mes)
         {
             Stream streamOut = streamsocket.OutputStream.AsStreamForWrite();
             StreamWriter writer = new StreamWriter(streamOut);
-            //string request = mes;
             await writer.WriteLineAsync(mes);
             await writer.FlushAsync();
         }
@@ -63,8 +68,8 @@ namespace WindowsApp
 
         public byte[] ReadBytes()
         {
-            Stream streamIn = streamsocket.InputStream.AsStreamForRead();          
-            
+            Stream streamIn = streamsocket.InputStream.AsStreamForRead();
+
             byte[] buffer = new byte[1024];
 
             int count = streamIn.Read(buffer, 0, buffer.Length);

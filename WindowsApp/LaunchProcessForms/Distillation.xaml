@@ -40,7 +40,7 @@
                     <Setter Property="Margin" Value="0,0,50,5"/>
                 </Style>
             </StackPanel.Resources>
-            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="163" Padding="0,0,-10,0">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="163" Padding="0,0,-10,0" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <StackPanel Orientation="Horizontal" Margin="-11,0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
@@ -66,7 +66,7 @@
                     </TextBlock>
                 </Button>
             </ListView>
-            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="165" Margin="-40,0,40,0" Padding="0">
+            <ListView x:Name="listView_Copy" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="165" Margin="-40,0,40,0" Padding="0" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <StackPanel Orientation="Horizontal" Width="165" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-11,0,-10,0" Padding="0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">

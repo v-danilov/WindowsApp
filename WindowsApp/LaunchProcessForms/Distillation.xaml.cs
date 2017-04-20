@@ -76,31 +76,31 @@ namespace WindowsApp.LaunchProcessForms
             string heat = data[5].Substring(4);
 
             //MixerButton
-            string mix = data[17].Substring(5);        
+            string mix = data[17].Substring(5);
 
 
             //Highlighting
             if (heat.Equals("1"))
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 heater = true;
             }
             else
             {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                heatingButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 heater = false;
             }
 
             if (mix.Equals("1"))
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
                 mixer = true;
             }
             else
             {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+                mixerButton.Background = new SolidColorBrush(Color.FromArgb(60, 0, 0, 0));
                 mixer = false;
-            }        
+            }
 
         }
 
@@ -143,32 +143,16 @@ namespace WindowsApp.LaunchProcessForms
 
         private void heatingButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!heater)
-            {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                heater = true;
-            }
-            else
-            {
-                heatingButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                heater = false;
-            }
             con.SendData("setMKey:1;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            updateData(response);
         }
 
         private void mixerButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!mixer)
-            {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(60, 10, 141, 16));
-                mixer = true;
-            }
-            else
-            {
-                mixerButton.BorderBrush = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
-                mixer = false;
-            }
             con.SendData("setKey:3;");
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            updateData(response);
         }
     }
 }
