@@ -53,8 +53,15 @@ namespace WindowsApp
 
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private async void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new MessageDialog("Сохранить изменеия?");
+            dialog.Commands.Add(new UICommand { Label = "Нет", Id = 2 });
+            dialog.Commands.Add(new UICommand { Label = "Да", Id = 1 });
+            dialog.Title = "Внимание";
+            var res = await dialog.ShowAsync();
+            con.SendData("setKey:" + res.Id + ";");
+            con.ReadBytes();
             Frame.GoBack();
         }     
 
@@ -81,6 +88,7 @@ namespace WindowsApp
                         var dialog = new MessageDialog("Данный процесс не содержит изменяемых параметров");                      
                         dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 0 });
                         var res = await dialog.ShowAsync();
+                        Frame.GoBack();
                         break;
                     case "Дистилляция":
                         var distillation_parameters = new Distilation();

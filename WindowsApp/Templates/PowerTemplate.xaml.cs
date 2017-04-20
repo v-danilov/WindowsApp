@@ -36,7 +36,7 @@ namespace WindowsApp.Templates
         {
             base.OnNavigatedTo(e);
 
-            var parameters = (SettingsTemplate)e.Parameter;
+            var parameters = (PowerTemplate)e.Parameter;
 
             con = parameters.con;
             inputMessage = parameters.inputMessage;
@@ -57,6 +57,7 @@ namespace WindowsApp.Templates
             string tmp = "power:" + c + ";";
             char[] mes = tmp.ToCharArray();
             con.SendChar(mes);
+            con.ReadBytes();
             Frame.GoBack();
         }
     }

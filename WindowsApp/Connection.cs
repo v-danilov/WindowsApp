@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Networking;
 using Windows.Networking.Sockets;
+using System.Net.Sockets;
 using Windows.Storage.Streams;
+using System.Net;
 
 namespace WindowsApp
 {
@@ -22,9 +24,14 @@ namespace WindowsApp
 
         async public void Connect()
         {                        
-                HostName serverHost = new HostName("192.168.4.1");
+                HostName serverHost = new HostName("192.168.4.1");              
                 string serverPort = "80";
-                await streamsocket.ConnectAsync(serverHost, serverPort);             
+                await streamsocket.ConnectAsync(serverHost, serverPort);
+
+                IPAddress localAddr = IPAddress.Parse("192.168.4.1");
+                //TcpListener server = new TcpListener(localAddr, 9595);
+
+
         }
 
         async public void SendData(string mes)

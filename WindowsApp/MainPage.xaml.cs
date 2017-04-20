@@ -73,10 +73,10 @@ namespace WindowsApp
                                 Frame.Navigate(typeof(Manual), manual_parameters);
                                 break;
                             case ("2"):
-                                var distillation_parameters = new TemperatureTemplate();
+                                var distillation_parameters = new Distillation();
                                 distillation_parameters.con = connection;
                                 distillation_parameters.inputMessage = response;
-                                Frame.Navigate(typeof(TemperatureTemplate), distillation_parameters);
+                                Frame.Navigate(typeof(Distillation), distillation_parameters);
                                 break;
                             case ("4"):
                                 var beerwort_parameters = new BeerWort();
@@ -85,10 +85,10 @@ namespace WindowsApp
                                 Frame.Navigate(typeof(BeerWort), beerwort_parameters);
                                 break;
                             case ("5"):
-                                var rectification_parameters = new TemperatureTemplate();
+                                var rectification_parameters = new Rectification();
                                 rectification_parameters.con = connection;
                                 rectification_parameters.inputMessage = response;
-                                Frame.Navigate(typeof(TemperatureTemplate), rectification_parameters);
+                                Frame.Navigate(typeof(Rectification), rectification_parameters);
                                 break;
                             case ("6"):
                                 var fermentation_parameters = new Fermentation();
@@ -115,7 +115,7 @@ namespace WindowsApp
                         var power_parameters = new PowerTemplate();
                         power_parameters.con = connection;
                         power_parameters.inputMessage = response;
-                        Frame.Navigate(typeof(RecipesPage), power_parameters);
+                        Frame.Navigate(typeof(PowerTemplate), power_parameters);
                         break;
                     case ("4"):
                         var recipe_parameters = new RecipesPage();
@@ -130,7 +130,7 @@ namespace WindowsApp
                         Frame.Navigate(typeof(TemperatureTemplate), preprocess_parameters);
                         break;
                     case ("6"):
-                             
+                        
                         break;
                 }
                            

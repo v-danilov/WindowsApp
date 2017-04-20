@@ -131,6 +131,7 @@ namespace WindowsApp.LaunchProcessForms
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
+            parameters.inputMessage = response;
             Frame.Navigate(typeof(PauseTemplate), parameters);
         }
 

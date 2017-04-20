@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsApp.ProcessPropertiesVeiw;
 using WindowsApp.Templates;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -64,9 +65,10 @@ namespace WindowsApp.LaunchProcessForms
             columnBlock.Text = Math.Round(Convert.ToDouble(data[8].Substring(0)) / 100, 1).ToString();
 
             //TargTemp
-            targetTankBlock.Text = "/" + Math.Round(Convert.ToDouble(data[13].Substring(0)) / 100, 1).ToString();
-            //targetColumnBlock.Text = "/" + data[14].Substring(0);
+            targetTankBlock.Text = "/" + Math.Round(Convert.ToDouble(data[12].Substring(8)) / 10, 1).ToString();
+        //targetColumnBlock.Text = "/" + data[14].Substring(0);
 
+       
             //Pressure
             pressureBlock.Text = Math.Round((Convert.ToDouble(data[16].Substring(12)) / 100), 2).ToString();
 
@@ -108,6 +110,7 @@ namespace WindowsApp.LaunchProcessForms
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             var parameters = new PauseTemplate();
             parameters.con = con;
+            parameters.inputMessage = response;
             Frame.Navigate(typeof(PauseTemplate), parameters);
         }
 
@@ -125,7 +128,12 @@ namespace WindowsApp.LaunchProcessForms
         private void changeButton_Click(object sender, RoutedEventArgs e)
         {
             con.SendData("setKey:4;");
-            //Frame.Navigate(StageSettings);
+            string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+            var power_parameters = new Distilation();
+            power_parameters.con = con;
+            power_parameters.inputMessage = response;
+            Frame.Navigate(typeof(Distilation), power_parameters);
+
         }
 
         private void notifyButton_Click(object sender, RoutedEventArgs e)

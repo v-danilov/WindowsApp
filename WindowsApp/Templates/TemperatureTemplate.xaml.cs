@@ -46,17 +46,14 @@ namespace WindowsApp.Templates
             string[] data = inputMessage.Split(';');
             Debug.WriteLine(data[1]);
             ProcessName.Text = data[1].Substring(4);
-            temperatureBox.Text = data[2].Substring(4);        
+            temperatureBox.Text = (Convert.ToInt32(data[2].Substring(4))/10).ToString();        
 
         }
 
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            string temp = temperatureBox.Text;
-            //char c = Convert.ToChar(p);
+            int temp = Convert.ToInt32(temperatureBox.Text) * 10;          
             string tmp = "temp:" + temp + ";";
-            //char[] mes = tmp.ToCharArray();
-            //con.SendChar(mes);
             con.SendData(tmp);
             string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
             if (response.Contains("PUSH"))

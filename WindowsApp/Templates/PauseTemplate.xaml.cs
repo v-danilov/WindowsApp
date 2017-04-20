@@ -80,6 +80,7 @@ namespace WindowsApp
             
 
             Debug.WriteLine(con.ReadData());
+            con.ReadData(); //del
             var dialog = new MessageDialog("Завершить рецепт?");
             dialog.Title = "Завершение процесса";
             dialog.Commands.Add(new UICommand { Label = "Нет", Id = 0 });
@@ -93,28 +94,61 @@ namespace WindowsApp
                 dialog.Title = "Завершение процесса";
                 dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 1 });
                 res = await dialog.ShowAsync();
-                if((int)res.Id == 1)
-                {
-                    con.SendData("setKey:1;");
-                    string response = con.ReadData();
-                    var First_Frame = Frame.BackStack.First();
-                    Frame.BackStack.Clear();
-                    Frame.BackStack.Add(First_Frame);
-                    var parameters = new RecipesPage();
-                    parameters.con = con;
-                    parameters.inputMessage = response;
-                    Frame.Navigate(typeof(RecipesPage), parameters);
-                }
-                
-
+                con.SendData("setKey:1;");
+                string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+                var First_Frame = Frame.BackStack.First();
+                Frame.BackStack.Clear();
+                Frame.BackStack.Add(First_Frame);
+                var parameters = new RecipesPage();
+                parameters.con = con;
+                parameters.inputMessage = response;
+                Frame.Navigate(typeof(RecipesPage), parameters);
+            }
+            else
+            {
+                con.SendData("setKey:2;");
+                con.ReadData();
+                return;
             }
 
             
         }
 
-        private void SkipButton_Click(object sender, RoutedEventArgs e)
+        private async void SkipButton_Click(object sender, RoutedEventArgs e)
         {
             con.SendData("setKey:3;");
+
+            Debug.WriteLine(con.ReadData());
+            con.ReadData(); //del
+            var dialog = new MessageDialog("Пропустить этап?");
+            dialog.Title = "Пропуск этапа";
+            dialog.Commands.Add(new UICommand { Label = "Нет", Id = 0 });
+            dialog.Commands.Add(new UICommand { Label = "Да", Id = 1 });
+            var res = await dialog.ShowAsync();
+            if ((int)res.Id == 1)
+            {
+                con.SendData("setKey:1;");
+                con.ReadData();
+                dialog = new MessageDialog("Рецепт завершён");
+                dialog.Title = "Завершение процесса";
+                dialog.Commands.Add(new UICommand { Label = "Продолжить", Id = 1 });
+                res = await dialog.ShowAsync();
+                con.SendData("setKey:1;");
+                string response = System.Text.Encoding.UTF8.GetString(con.ReadBytes());
+                var First_Frame = Frame.BackStack.First();
+                Frame.BackStack.Clear();
+                Frame.BackStack.Add(First_Frame);
+                var parameters = new RecipesPage();
+                parameters.con = con;
+                parameters.inputMessage = response;
+                Frame.Navigate(typeof(RecipesPage), parameters);
+            }
+            else
+            {
+                con.SendData("setKey:2;");
+                con.ReadData();
+                return;
+            }
         }
     }
 }
